@@ -1,0 +1,31 @@
+# docker-compose.yml
+version: "3"
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:3001
+  backend:
+    build: ./backend
+    environment:
+      DEEPGRAM_API_KEY: 7a616556ecad2e2fb6ec5d5a281cd2761065c24b
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/chatlog?schema=public
+    depends_on:
+      - db
+    ports:
+      - "3001:3001"
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: chatlog
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_data:

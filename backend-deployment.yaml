@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: backend
+  name: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: backend
+  template:
+    metadata:
+      labels:
+        io.kompose.service: backend
+    spec:
+      containers:
+        - env:
+            - name: DATABASE_URL
+              value: postgresql://postgres:postgres@db:5432/chatlog?schema=public
+            - name: DEEPGRAM_API_KEY
+              value: 7a616556ecad2e2fb6ec5d5a281cd2761065c24b
+          image: backend-img
+          imagePullPolicy: Never
+          name: backend
+          ports:
+            - containerPort: 3001
+              protocol: TCP
+      restartPolicy: Always
