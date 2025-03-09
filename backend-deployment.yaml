@@ -20,8 +20,7 @@ spec:
               value: postgresql://postgres:postgres@db:5432/chatlog?schema=public
             - name: DEEPGRAM_API_KEY
               value: 7a616556ecad2e2fb6ec5d5a281cd2761065c24b
-          image: backend-img
-          imagePullPolicy: Never
+          image: backend
           name: backend
           ports:
             - containerPort: 3001

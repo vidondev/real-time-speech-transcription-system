@@ -9,9 +9,10 @@ RUN yarn install
 COPY . .
 
 RUN yarn db:generate
-RUN yarn db:push
 RUN yarn build
 
 EXPOSE 3001
 
-CMD ["node", "dist/main"]
+# CMD ["node", "dist/main"]
+CMD ["sh", "-c", "yarn db:migrate:deploy && yarn start:prod"]
+

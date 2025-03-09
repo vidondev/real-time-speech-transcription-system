@@ -25,6 +25,7 @@ import { Service } from "@/services/api";
 import { useRouter } from "next/navigation";
 import { useLocalStorage } from "usehooks-ts";
 import { useEffect } from "react";
+import { Loader } from "lucide-react";
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -68,7 +69,7 @@ export function LoginForm() {
 
   return (
     <div className={cn("flex flex-col gap-6")}>
-      <Card>
+      <Card className="border-gray-300">
         <CardHeader>
           <CardTitle className="text-2xl">Login</CardTitle>
           <CardDescription>
@@ -105,7 +106,15 @@ export function LoginForm() {
                   </FormItem>
                 )}
               />
-              <Button type="submit">Login</Button>
+              <Button type="submit" disabled={form.formState.isSubmitting}>
+                {form.formState.isSubmitting && (
+                  <Loader
+                    className="mr-2 size-4 animate-spin"
+                    aria-hidden="true"
+                  />
+                )}
+                {"Login"}
+              </Button>
             </form>
           </Form>
         </CardContent>

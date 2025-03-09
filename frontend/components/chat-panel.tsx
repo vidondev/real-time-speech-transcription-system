@@ -27,6 +27,12 @@ export function ChatPanel() {
     if (text) setTranscriptions([...transcriptions, text]);
   });
 
+  useEffect(() => {
+    return () => {
+      webSocket.disconnect();
+    };
+  }, []);
+
   webSocket.on("messages", (text: string) => {
     setMessages(JSON.parse(text));
   });
@@ -41,7 +47,6 @@ export function ChatPanel() {
     setMessages(messages);
   };
   useEffect(() => {
-    console.log(value);
     if (!value) {
       router.replace("/");
       return;

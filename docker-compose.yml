@@ -2,12 +2,14 @@
 version: "3"
 services:
   frontend:
+    container_name: frontend
     build: ./frontend
     ports:
       - "3000:3000"
     environment:
       NEXT_PUBLIC_API_URL: http://localhost:3001
   backend:
+    container_name: backend
     build: ./backend
     restart: always
     environment:
@@ -17,8 +19,6 @@ services:
       - db
     ports:
       - "3001:3001"
-    networks:
-      - chat
   db:
     image: postgres:15
     environment:
@@ -29,8 +29,6 @@ services:
       - postgres_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
-    networks:
-      - chat
 
 volumes:
   postgres_data:
