@@ -21,3 +21,42 @@
 - 需要了解如何使用 Deepgram 進行語音轉譯
 - 學習將項目 Docker 化
 - 以及如何部署到 k8s
+
+### 环境要求
+
+需要 NodeJS 20+ 环境
+
+### 前置工作
+
+需要去[https://deepgram.com](https://deepgram.com/)申請 API KEY
+
+然後將./backend/.env 文件裡面的 DEEPGRAM_API_KEY 換成剛申請的 API KEY
+
+### 安裝(docker)
+
+```shell
+git clone git@github.com:vidondev/real-time-speech-transcription-system.git
+docker-compose up -d
+```
+
+### 或
+
+### 本地運行
+
+#### 前提需要啟動 Postgres database 服務
+
+Backend
+
+```shell
+cd backend
+yarn
+yarn start:dev
+```
+
+Frontend
+
+```shell
+cd frontend
+yarn
+yarn dev
+```

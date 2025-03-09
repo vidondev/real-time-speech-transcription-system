@@ -1,5 +1,5 @@
 // hooks/useAudioRecorder.ts
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export const useAudioRecorder = () => {
   const [audioChunk, setAudioChunk] = useState<Blob | null>(null);
